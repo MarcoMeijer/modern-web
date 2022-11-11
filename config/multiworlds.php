@@ -10,6 +10,10 @@ return [
         [
             'title' => 'Welcome',
             'url' => '/',
+        ],
+        [
+            'title' => 'posts',
+            'url' => '/posts',
         ]
     ],
 
