@@ -17,7 +17,7 @@ class PostFactory extends Factory
             'title' => fake()->sentance(),
             'body' => fake()->realText(),
             'published_at' => fake()->dateTimeBetween('-2 weeks', 'now'),
-            'author_id' => fake()->numberBetween(1,5),
+            'author_id' => fake()->numberBetween(1, 5),
         ];
     }
 }

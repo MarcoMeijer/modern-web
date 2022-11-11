@@ -13,7 +13,9 @@ class SiteLayout extends Component
      */
     public function __construct(
         public string $title = 'MySite',
-    ) {}
+    )
+    {
+    }
 
     /**
      * Get the view / contents that represent the component.

@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class Navigation extends Component
 {
     public array $menu;
-    
+
     /**
      * Create a new component instance.
      *
