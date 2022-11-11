@@ -14,10 +14,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->sentance(),
-            'body' => fake()->realText(),
-            'published_at' => fake()->dateTimeBetween('-2 weeks', 'now'),
-            'author_id' => fake()->numberBetween(1, 5),
+            'title' => $this->faker->sentance(),
+            'body' => $this->faker->realText(),
+            'published_at' => $this->faker->dateTimeBetween('-2 weeks', 'now'),
+            'author_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }
