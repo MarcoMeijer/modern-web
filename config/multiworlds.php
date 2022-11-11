@@ -12,7 +12,7 @@ return [
             'url' => '/',
         ],
         [
-            'title' => 'posts',
+            'title' => 'Posts',
             'url' => '/posts',
         ]
     ],
