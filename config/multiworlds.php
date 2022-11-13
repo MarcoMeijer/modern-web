@@ -12,8 +12,8 @@ return [
             'url' => '/',
         ],
         [
-            'title' => 'Posts',
-            'url' => '/posts',
+            'title' => 'Forum',
+            'url' => '/topics',
         ]
     ],
 

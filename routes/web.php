@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::resource('/posts', App\Http\Controllers\PostController::class);
+Route::resource('/topics', App\Http\Controllers\TopicController::class);
