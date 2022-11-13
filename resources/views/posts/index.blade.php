@@ -5,7 +5,6 @@
         <li>
             <a href="{{route('posts.show', $post->id)}}">
                 <span class="font-semibold">{{$post->title}}</span>
-                <span class="text-sm">{{ Str::limit($post->body, 80)}}</span>
             </a>
         </li>
         @endforeach
