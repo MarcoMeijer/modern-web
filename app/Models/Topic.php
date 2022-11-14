@@ -9,6 +9,11 @@ class Topic extends Model
 {
     use HasFactory;
 
+    public function comments()
+    {
+        return $this->hasManyThrough(Comment::class, Post::class);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
