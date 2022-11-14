@@ -8,7 +8,7 @@
             >
                 <div class="flex flex-col justify-center">
                     <a href="{{route('topics.show', $topic->id)}}">
-                        <span class="flex font-semibold text-slate-800">{{$topic->name}}</span>
+                        <span class="flex font-semibold text-slate-600">{{$topic->name}}</span>
                     </a>
                     <span class="flex font-serif text-xs text-slate-500">{{$topic->description}}</span>
                 </div>
