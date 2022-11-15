@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function author()
     {
         return $this->belongsTo(User::class);
@@ -18,5 +20,4 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
-
 }

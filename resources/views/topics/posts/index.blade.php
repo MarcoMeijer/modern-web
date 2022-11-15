@@ -10,7 +10,9 @@
                         <a href="{{route('posts.show', $post->id)}}">
                             <span class="flex font-semibold text-sm text-slate-600">{{Str::limit($post->title, 70)}}</span>
                         </a>
+                        @if(count($post->comments) > 0)
                         <span class="flex font-serif text-xs text-slate-500">{{$post->comments[0]->published_at}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="flex-1"></div>
@@ -20,5 +22,10 @@
             </div>
         </li>
         @endforeach
+        <form method="GET" action="{{ route('topics.posts.create', $topic->id) }}">
+            <x-button class="m-1">
+                Create post
+            </x-button>
+        </form>
     </ul>
 </x-site-layout>
