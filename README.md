@@ -24,12 +24,17 @@ cd modern-web
 composer install
 ```
 
-4. Copy the .env.example file to .env. Edit this file to the correct values for your system.
+4. Copy the .env.example file to .env. Edit this file to the correct values for your system (for example: correct database credentials).
 ```
 cp .env.example .env
 ```
 
-5. Run migrations, this will create and fill the database
+5. Generate key:
+```
+php artisan key:generate
+```
+
+6. Run migrations, this will create and fill the database
 ```
 php artisan migrate:fresh --seed
 ```
