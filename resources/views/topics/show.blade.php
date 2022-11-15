@@ -14,7 +14,7 @@
                         <a href="{{route('posts.show', $post->id)}}">
                             <span class="flex font-semibold text-sm text-slate-600">{{Str::limit($post->title, 70)}}</span>
                         </a>
-                        <span class="flex font-serif text-xs text-slate-400">{{$post->comments[0]->published_at}}</span>
+                        <span class="flex font-serif text-xs text-slate-500">{{$post->comments[0]->published_at}}</span>
                     </div>
                 </div>
                 <div class="flex-1"></div>
