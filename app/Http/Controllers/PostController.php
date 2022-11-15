@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Topic;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $posts = Post::all();
+        $topic = Topic::find($id);
 
-        return view('posts.index', compact('posts'));
+        return view('topics.posts.index', compact('topic'));
     }
 
     public function show($id)

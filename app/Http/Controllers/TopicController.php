@@ -12,11 +12,4 @@ class TopicController extends Controller
 
         return view('topics.index', compact('topics'));
     }
-
-    public function show($id)
-    {
-        $topic = Topic::find($id);
-
-        return view('topics.show', compact('topic'));
-    }
 }
