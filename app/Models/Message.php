@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Message extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,8 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function post()
+    public function thread()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Thread::class);
     }
 }

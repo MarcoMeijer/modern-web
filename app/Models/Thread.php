@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Thread extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function comments()
+    public function messages()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Message::class);
     }
 
     public function topic()

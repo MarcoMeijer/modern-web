@@ -9,13 +9,13 @@ class Topic extends Model
 {
     use HasFactory;
 
-    public function comments()
+    public function messages()
     {
-        return $this->hasManyThrough(Comment::class, Post::class);
+        return $this->hasManyThrough(Message::class, Thread::class);
     }
 
-    public function posts()
+    public function threads()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Thread::class);
     }
 }

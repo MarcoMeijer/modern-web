@@ -2,32 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Message;
+use App\Models\Thread;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class ThreadController extends Controller
 {
     public function index($id)
     {
         $topic = Topic::find($id);
 
-        return view('topics.posts.index', compact('topic'));
+        return view('topics.threads.index', compact('topic'));
     }
 
     public function show($id)
     {
-        $post = Post::find($id);
+        $thread = Thread::find($id);
 
-        return view('posts.show', compact('post'));
+        return view('threads.show', compact('thread'));
     }
 
     public function create($id)
     {
         $topic = Topic::find($id);
 
-        return view('posts.create', compact('topic'));
+        return view('threads.create', compact('topic'));
     }
 
     public function store(Request $request)
@@ -38,18 +38,18 @@ class PostController extends Controller
             'topic_id' => 'required|exists:topics,id',
         ]);
 
-        $post = Post::create([
+        $thread = Thread::create([
             'title' => $request->title,
             'topic_id' => $request->topic_id,
         ]);
 
-        Comment::create([
+        Message::create([
             'body' => $request->body,
             'published_at' => now(),
             'author_id' => 1, // todo: put in the id of the current logged in user
-            'post_id' => $post->id,
+            'thread_id' => $thread->id,
         ]);
 
-        return redirect()->route('topics.posts.index', $request->topic_id);
+        return redirect()->route('topics.threads.index', $request->topic_id);
     }
 }
