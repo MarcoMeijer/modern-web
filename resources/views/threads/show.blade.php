@@ -20,5 +20,11 @@
             </class>
         </li>
         @endforeach
+        <li class="flex flex-col bg-slate-100 rounded-md shadow-lg p-2 m-2">
+            <x-form method="post" route="{{route('messages.store', $thread->id)}}" title="New reply" submit="reply">
+                <x-form-text-area name="body" label="Body" placeholder="Enter text here..." :errors="$errors" value="" />
+                <input type="hidden" id="thread_id" name="thread_id" value="{{$thread->id}}">
+            </x-form>
+        </li>
     </ul>
 </x-site-layout>
