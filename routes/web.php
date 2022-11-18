@@ -13,7 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+// PUBLIC ROUTES ==========================================================
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::resource('topics', App\Http\Controllers\TopicController::class);
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);
+
+require __DIR__ . '/auth.php';
+
+// LOGGED IN ROUTES =======================================================
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// ADMIN ROUTES ===========================================================
