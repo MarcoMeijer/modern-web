@@ -17,7 +17,7 @@ class MessagesController extends Controller
         Message::create([
             'body' => $request->body,
             'published_at' => now(),
-            'author_id' => 1, // todo: put in the id of the current logged in user
+            'author_id' => $request->user()->id,
             'thread_id' => $request->thread_id,
         ]);
 
