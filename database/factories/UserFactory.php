@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -22,6 +23,17 @@ class UserFactory extends Factory
             'authorization' => 'user',
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            $url = 'https://source.unsplash.com/random/200x200';
+            $user
+                ->profile
+                ->addMediaFromUrl($url)
+                ->toMediaCollection();
+        });
     }
 
     /**
