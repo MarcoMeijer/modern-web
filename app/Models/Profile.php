@@ -25,11 +25,11 @@ class Profile extends Model implements HasMedia
     {
         $this
             ->addMediaConversion('thumbnail')
-            ->fit(Manipulations::FIT_CROP, 32, 32)
+            ->fit(Manipulations::FIT_CROP, 64, 64)
             ->nonQueued();
         $this
             ->addMediaConversion('big')
-            ->fit(Manipulations::FIT_CROP, 128, 128)
+            ->fit(Manipulations::FIT_CROP, 256, 256)
             ->nonQueued();
     }
 }
