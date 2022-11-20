@@ -13,8 +13,7 @@ class SiteLayout extends Component
      */
     public function __construct(
         public string $title = 'MySite',
-    )
-    {
+    ) {
     }
 
     /**
@@ -24,6 +23,6 @@ class SiteLayout extends Component
      */
     public function render()
     {
-        return view('components.site-layout');
+        return view('layouts.site');
     }
 }

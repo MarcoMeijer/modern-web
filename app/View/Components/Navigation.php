@@ -25,6 +25,6 @@ class Navigation extends Component
      */
     public function render()
     {
-        return view('components.navigation');
+        return view('layouts.navigation');
     }
 }

@@ -9,10 +9,12 @@ return [
     'menu' => [
         [
             'title' => 'Welcome',
+            'route' => '',
             'url' => '/',
         ],
         [
             'title' => 'Forum',
+            'route' => 'topics',
             'url' => '/topics',
         ]
     ],
