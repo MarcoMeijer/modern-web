@@ -42,6 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            Profile::create([
+                'user_id' => $user->id,
+            ]);
+        });
+    }
+
     public function is_admin()
     {
         return $this->authorization === 'admin';
@@ -50,6 +59,11 @@ class User extends Authenticatable
     public function is_moderator()
     {
         return $this->authorization === 'moderator' || $this->authorization === 'admin';
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 
     public function messages()
