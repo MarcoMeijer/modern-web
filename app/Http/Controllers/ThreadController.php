@@ -11,14 +11,14 @@ class ThreadController extends Controller
 {
     public function index($id)
     {
-        $topic = Topic::find($id);
+        $topic = Topic::with('threads', 'threads.messages')->find($id);
 
         return view('topics.threads.index', compact('topic'));
     }
 
     public function show($id)
     {
-        $thread = Thread::find($id);
+        $thread = Thread::with('messages', 'messages.author', 'messages.author.messages')->find($id);
 
         return view('threads.show', compact('thread'));
     }
