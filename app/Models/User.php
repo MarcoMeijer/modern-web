@@ -42,6 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function is_admin()
+    {
+        return $this->authorization === 'admin';
+    }
+
+    public function is_moderator()
+    {
+        return $this->authorization === 'moderator' || $this->authorization === 'admin';
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class, 'author_id');

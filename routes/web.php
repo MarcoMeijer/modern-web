@@ -29,3 +29,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // ADMIN ROUTES ===========================================================
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    // admin routes come here
+});
