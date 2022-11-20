@@ -28,7 +28,7 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            $url = 'https://source.unsplash.com/random/200x200';
+            $url = 'https://source.unsplash.com/random/128x128';
             $user
                 ->profile
                 ->addMediaFromUrl($url)
