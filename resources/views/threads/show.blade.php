@@ -7,7 +7,7 @@
                 <x-profile-badge :user="$message->author" />
             </class>
             <class class="flex flex-col flex-1 p-2">
-                <span class="flex">{{$message->body}}</span>
+                <span class="flex">{!! $message->body !!}</span>
                 <div class="flex flex-1"></div>
                 <div class="flex border-t border-slate-100 mx-2 pt-1">
                     <span class="flex flex-initial font-serif text-xs text-slate-400">Posted at {{$message->published_at}}</span>
@@ -19,7 +19,11 @@
         @endforeach
         <li class="flex flex-col bg-white rounded-md shadow-lg p-5 m-2">
             <x-form method="post" route="{{route('messages.store', $thread->id)}}" title="New reply" submit="reply">
-                <x-form-text-area name="body" label="Body" placeholder="Enter text here..." :errors="$errors" value="" />
+                <div class="my-2">
+                    <x-input-label for="body" :value="__('Body')" />
+                    <x-trix-field id="body" name="body" value="{!! old('body', '') !!}" />
+                    <x-input-error class="mt-2" :messages="$errors->get('body')" />
+                </div>
                 <input type="hidden" id="thread_id" name="thread_id" value="{{$thread->id}}">
             </x-form>
         </li>

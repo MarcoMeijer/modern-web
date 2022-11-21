@@ -16,7 +16,6 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            $table->text('body');
             $table->timestamp('published_at');
             $table->foreignId('thread_id');
             $table->foreignId('author_id');
