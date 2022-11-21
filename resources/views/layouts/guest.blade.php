@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <x-rich-text-trix-styles />
+
 </head>
 
 <body>
