@@ -26,7 +26,7 @@
 
         <div>
             <x-input-label for="bio" :value="__('Bio')" />
-            <x-text-area id="bio" name="bio" class="h-64 mt-1 block w-full" :value="old('bio', $user->profile->bio)" autofocus autocomplete="bio" />
+            <x-trix-field id="bio" name="bio" value="{!! old('bio', $user->profile->bio->toTrixHtml()) !!}" />
             <x-input-error class="mt-2" :messages="$errors->get('bio')" />
         </div>
 

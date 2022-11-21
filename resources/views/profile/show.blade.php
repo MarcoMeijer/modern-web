@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex flex-col p-2">
                     <h2 class="text-lg font-medium text-gray-900">Bio</h2>
-                    <p class="mt-1 text-sm text-gray-600">{{ $user->profile->bio }}</p>
+                    <p class="mt-1 text-sm text-gray-600">{!! $user->profile->bio !!}</p>
                 </div>
             </div>
         </div>

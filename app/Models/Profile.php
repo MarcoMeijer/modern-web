@@ -8,13 +8,19 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 class Profile extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use HasRichText;
 
     protected $guarded = [];
+
+    protected $richTextFields = [
+        'bio',
+    ];
 
     public function user()
     {

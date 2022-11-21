@@ -16,7 +16,7 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <x-rich-text-trix-styles />
+    <script src="resources/js/trix.js"></script>
 
 </head>
 
