@@ -38,13 +38,16 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
+        $validated = $request->validated();
+        $request->user()->fill($validated);
+        $request->user()->profile->fill($request->only('bio'));
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
+        $request->user()->profile->save();
 
         if ($request->hasFile('image')) {
             $request->user()->profile->media()->first()?->delete();
