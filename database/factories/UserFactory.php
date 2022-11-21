@@ -28,11 +28,16 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
+            $profile = $user->profile;
+            $profile
+                ->bio = $this->faker->realText();
+
             $url = 'https://source.unsplash.com/random/128x128';
-            $user
-                ->profile
+            $profile
                 ->addMediaFromUrl($url)
                 ->toMediaCollection();
+
+            $profile->save();
         });
     }
 
