@@ -24,9 +24,9 @@
         @endforeach
         @if(Auth::user() !== null)
         <form method="GET" action="{{ route('topics.threads.create', $topic->id) }}">
-            <x-button class="m-1">
+            <x-primary-button class="m-1">
                 Create thread
-            </x-button>
+            </x-primary-button>
         </form>
         @endif
     </div>

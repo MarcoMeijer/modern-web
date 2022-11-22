@@ -5,7 +5,7 @@
 
         {{$slot}}
 
-        <button type="submit" class="flex self-start p-2 bg-green-500 text-green-50 rounded-md">{{$submit}}</button>
+        <x-primary-button class="flex self-start">{{$submit}}</x-primary-button>
     </form>
 
 </div>
