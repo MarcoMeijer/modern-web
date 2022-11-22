@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/developers', function () {
+    return view('developers');
+});
 Route::resource('topics', App\Http\Controllers\TopicController::class);
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);

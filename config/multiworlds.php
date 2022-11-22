@@ -13,6 +13,11 @@ return [
             'url' => '/',
         ],
         [
+            'title' => 'About us',
+            'route' => 'developers',
+            'url' => '/developers',
+        ],
+        [
             'title' => 'Forum',
             'route' => 'topics',
             'url' => '/topics',
