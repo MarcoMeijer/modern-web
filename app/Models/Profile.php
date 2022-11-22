@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -27,8 +28,26 @@ class Profile extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function getImageUrl(String $format)
+    {
+        $media = $this->media->first();
+        if ($media === null) {
+            return null;
+        }
+
+        try {
+            return $media->getUrl($format);
+        } catch (Exception $e) {
+            return $media->getUrl();
+        }
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
+        if ($media && $media->extension === Manipulations::FORMAT_GIF) {
+            return;
+        }
+
         $this
             ->addMediaConversion('thumbnail')
             ->fit(Manipulations::FIT_CROP, 64, 64)

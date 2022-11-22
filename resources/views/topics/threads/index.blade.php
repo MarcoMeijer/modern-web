@@ -5,7 +5,7 @@
         <div class="flex-col flex">
             <div class="flex items-stretch flex-row bg-slate-100 border-l border-r border-b border-solid border-neutral-300 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
                 <div class="flex flex-row items-center">
-                    <img class="flex h-8 w-8 rounded" src="{{$thread->messages[0]->author->profile->media->first()->getUrl('thumbnail')}}" alt="">
+                    <img class="flex h-8 w-8 rounded" src="{{$thread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $thread->id)}}">
                             <span class="flex font-semibold text-sm text-slate-800">{{Str::limit($thread->title, 70)}}</span>

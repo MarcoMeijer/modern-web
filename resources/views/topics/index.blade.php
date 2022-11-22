@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex flex-row items-center border-l border-neutral-300 px-2 w-72">
-                    <img class="flex h-8 w-8 rounded" src="{{$topic->threads[0]->messages[0]->author->profile->media->first()->getUrl('thumbnail')}}" alt="">
+                    <img class="flex h-8 w-8 rounded" src="{{$topic->threads[0]->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $topic->threads[0]->id)}}">
                             <span class="flex font-serif text-sm text-slate-700">{{Str::limit($topic->threads[0]->title, 30)}}</span>

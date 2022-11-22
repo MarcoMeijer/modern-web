@@ -20,7 +20,7 @@
         <div>
             <x-input-label for="image" :value="__('Profile image')" />
             <input type="file" id="image" name="image" accept="image/*" />
-            <img class="shadow-md h-32 w-32 rounded" src="{{$user->profile->media->first()?->getUrl('big')}}" alt="">
+            <img class="shadow-md h-32 w-32 rounded" src="{{$user->profile->getImageUrl('big')}}" alt="">
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
