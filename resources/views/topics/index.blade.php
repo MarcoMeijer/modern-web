@@ -1,9 +1,9 @@
 <x-site-layout title="Topics">
 
-    <ul class="flex-col">
+    <x-white-box class="flex-col p-6">
         @foreach($topics as $topic)
-        <li class="flex-col flex">
-            <div class="flex items-stretch flex-row bg-slate-100 border-l border-r border-b border-solid border-neutral-300 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
+        <div class="flex-col flex">
+            <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-neutral-300 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
                 <div class="flex flex-col justify-center">
                     <a href="{{route('topics.threads.index', $topic->id)}}">
                         <span class="flex font-semibold text-slate-800">{{$topic->name}}</span>
@@ -27,8 +27,8 @@
                     <span class="flex font-serif text-xs text-slate-700">Messages: {{count($topic->messages)}}</span>
                 </div>
             </div>
-        </li>
+        </div>
         @endforeach
-    </ul>
+    </x-white-box>
 
 </x-site-layout>
