@@ -20,11 +20,7 @@
         <li class="flex flex-col bg-white rounded-md shadow-lg p-5 m-2">
             @if(Auth::user() !== null)
             <x-form method="post" route="{{route('messages.store', $thread->id)}}" title="New reply" submit="reply">
-                <div class="my-2">
-                    <x-input-label for="body" :value="__('Body')" />
-                    <x-trix-field id="body" name="body" value="{!! old('body', '') !!}" />
-                    <x-input-error class="mt-2" :messages="$errors->get('body')" />
-                </div>
+                <x-form-trix-field name="body" label="Body" :errors="$errors" value="" />
                 <input type="hidden" id="thread_id" name="thread_id" value="{{$thread->id}}">
             </x-form>
             @else

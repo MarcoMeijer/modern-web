@@ -1,7 +1,7 @@
 @props(['name', 'label', 'errors', 'value'])
 <div>
     <x-input-label :for="$name" :value="__($label)" />
-    <x-text-input :id="$name" :name="$name" type="text" class="mt-1 block w-full" :value="old($name, $value)" required autofocus :autocomplete="$name" />
+    <input type="file" :id="$name" :name="$name" accept="image/*" />
+    <img class="shadow-md h-32 w-32 rounded" src="{{$value}}" alt="">
     <x-input-error class="mt-2" :messages="$errors->get($name)" />
-    {{ $slot }}
 </div>

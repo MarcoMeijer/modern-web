@@ -1,7 +1,7 @@
 @props(['name', 'label', 'errors', 'value'])
 <div>
     <x-input-label :for="$name" :value="__($label)" />
-    <x-text-input :id="$name" :name="$name" type="text" class="mt-1 block w-full" :value="old($name, $value)" required autofocus :autocomplete="$name" />
+    <x-trix-field :id="$name" :name="$name" value="{!! old($name, $value === '' ? '' : $value->toTrixHtml()) !!}" />
     <x-input-error class="mt-2" :messages="$errors->get($name)" />
     {{ $slot }}
 </div>

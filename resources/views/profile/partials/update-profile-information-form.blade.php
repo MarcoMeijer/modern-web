@@ -4,37 +4,16 @@
         <p class="mt-1 text-sm text-gray-600">Update your account's profile information and email address.</p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
+        <x-form-input name="username" label="Username" :errors="$errors" :value="$user->username" />
 
-        <div>
-            <x-input-label for="image" :value="__('Profile image')" />
-            <input type="file" id="image" name="image" accept="image/*" />
-            <img class="shadow-md h-32 w-32 rounded" src="{{$user->profile->getImageUrl('big')}}" alt="">
-            <x-input-error class="mt-2" :messages="$errors->get('image')" />
-        </div>
+        <x-form-image name="image" label="Profile image" :errors="$errors" :value="$user->profile->getImageUrl('big')" />
 
-        <div>
-            <x-input-label for="bio" :value="__('Bio')" />
-            <x-trix-field id="bio" name="bio" value="{!! old('bio', $user->profile->bio->toTrixHtml()) !!}" />
-            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
-        </div>
+        <x-form-trix-field name="bio" label="Bio" :errors="$errors" :value="$user->profile->bio" />
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="email" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
+        <x-form-input name="email" label="Email" :errors="$errors" :value="$user->email">
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
                 <p class="text-sm mt-2 text-gray-800">
@@ -52,7 +31,7 @@
                 @endif
             </div>
             @endif
-        </div>
+        </x-form-input>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
