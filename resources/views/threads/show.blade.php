@@ -18,6 +18,7 @@
         </li>
         @endforeach
         <li class="flex flex-col bg-white rounded-md shadow-lg p-5 m-2">
+            @if(Auth::user() !== null)
             <x-form method="post" route="{{route('messages.store', $thread->id)}}" title="New reply" submit="reply">
                 <div class="my-2">
                     <x-input-label for="body" :value="__('Body')" />
@@ -26,6 +27,9 @@
                 </div>
                 <input type="hidden" id="thread_id" name="thread_id" value="{{$thread->id}}">
             </x-form>
+            @else
+            <span class="flex">Login to be able to reply.</span>
+            @endif
         </li>
     </ul>
 </x-site-layout>

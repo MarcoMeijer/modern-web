@@ -22,10 +22,12 @@
             </div>
         </div>
         @endforeach
+        @if(Auth::user() !== null)
         <form method="GET" action="{{ route('topics.threads.create', $topic->id) }}">
             <x-button class="m-1">
                 Create thread
             </x-button>
         </form>
+        @endif
     </div>
 </x-site-layout>
