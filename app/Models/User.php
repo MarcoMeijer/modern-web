@@ -49,6 +49,12 @@ class User extends Authenticatable
                 'user_id' => $user->id,
             ]);
         });
+        static::deleting(function ($user) {
+            $user->profile->delete();
+            foreach ($user->messages as $message) {
+                $message->delete();
+            }
+        });
     }
 
     public function is_admin()

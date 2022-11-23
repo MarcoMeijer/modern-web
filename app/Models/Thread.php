@@ -11,6 +11,15 @@ class Thread extends Model
 
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        static::deleting(function ($thread) {
+            foreach ($thread->messages as $message) {
+                $message->delete();
+            }
+        });
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class);

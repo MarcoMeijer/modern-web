@@ -17,6 +17,15 @@ class Message extends Model
         'body',
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function ($message) {
+            if ($message->thread !== null && $message->thread->messages[0]->id === $message->id) {
+                $message->thread->delete();
+            }
+        });
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class);
