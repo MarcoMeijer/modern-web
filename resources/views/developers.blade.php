@@ -15,8 +15,6 @@
                     I released a very early version of this game in 2017.
                     After that I restarted this game to improve the code, and get better at pixel art because the game looked like sh*t.
                     I stopped working on this game for a few years to focus on other things, but since december 2021 I started working on it again.
-                    With a goal to release the game in 2024 (or before).
-                    Since the start the vision of the game has transformed a lot.
                 </p>
             </div>
             <img class="w-64 h-64 rounded shadow-md shadow-neutral-500" src="{{ URL::to('/') }}/media/marco.jpeg" />
@@ -31,6 +29,7 @@
                 </h2>
                 <p class="mt-1 text-sm text-gray-600">
                     Helped developing the java client.
+                    He joined development in december 2021, and mostly worked on the ingame UI.
                 </p>
             </div>
         </div>
