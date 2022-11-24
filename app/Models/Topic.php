@@ -20,4 +20,11 @@ class Topic extends Model
     {
         return $this->hasMany(Thread::class);
     }
+
+    public function lastThread()
+    {
+        return $this
+            ->hasOne(Thread::class)
+            ->latestOfMany();
+    }
 }

@@ -12,13 +12,13 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex flex-row items-center border-l border-slate-200 px-2 w-72">
-                    @if(count($topic->threads) > 0 && count($topic->threads[0]->messages) > 0)
-                    <img class="flex h-8 w-8 rounded" src="{{$topic->threads[0]->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
+                    @if($topic->lastThread !== null && count($topic->lastThread->messages) > 0)
+                    <img class="flex h-8 w-8 rounded" src="{{$topic->lastThread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
                     <div class="flex flex-col mx-1">
-                        <a href="{{route('threads.show', $topic->threads[0]->id)}}">
-                            <span class="flex font-serif text-sm text-slate-600">{{Str::limit($topic->threads[0]->title, 30)}}</span>
+                        <a href="{{route('threads.show', $topic->lastThread->id)}}">
+                            <span class="flex font-serif text-sm text-slate-600">{{Str::limit($topic->lastThread->title, 30)}}</span>
                         </a>
-                        <span class="flex font-serif text-xs text-slate-500">{{$topic->threads[0]->messages[0]->published_at}}</span>
+                        <span class="flex font-serif text-xs text-slate-500">{{$topic->lastThread->messages[0]->published_at}}</span>
                     </div>
                     @endif
                 </div>
