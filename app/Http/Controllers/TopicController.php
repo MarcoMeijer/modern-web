@@ -11,7 +11,7 @@ class TopicController extends Controller
     public function index()
     {
         $topics = Cache::remember('topics.index', 60, function () {
-            return Topic::with('threads.messages', 'lastThread.messages.author.profile.media', 'messages')->get();
+            return Topic::with('lastThread.firstMessage.author.profile.media')->get();
         });
 
         return view('topics.index', compact('topics'));

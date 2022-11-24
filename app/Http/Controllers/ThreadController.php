@@ -13,7 +13,7 @@ class ThreadController extends Controller
     public function index($id)
     {
         $topic = Cache::remember("topics.threads.index.$id", 60, function () use ($id) {
-            return Topic::with('threads.messages.author.profile.media')->find($id);
+            return Topic::with('threads.firstMessage.author.profile.media')->find($id);
         });
 
         return view('topics.threads.index', compact('topic'));
@@ -27,7 +27,7 @@ class ThreadController extends Controller
 
         $messages = Cache::remember("threads.show.$id.messages", 60, function () use ($id) {
             return Message::withRichText()
-                ->with('author.profile.media', 'author.messages')
+                ->with('author.profile.media')
                 ->where('thread_id', $id)
                 ->get();
         });

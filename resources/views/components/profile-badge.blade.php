@@ -5,5 +5,5 @@
         <span class="font-semibold">{{$user->username}}</span>
     </a>
     <span class="text-xs text-slate-400 p-1 text-center border-t border-slate-100">Member since <br /> {{$user->email_verified_at}}</span>
-    <span class="text-xs text-slate-400 m-1">Messages posted: {{count($user->messages)}}</span>
+    <span class="text-xs text-slate-400 m-1">Messages posted: {{$user->profile->n_messages}}</span>
 </div>

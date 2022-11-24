@@ -12,19 +12,19 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex flex-row items-center border-l border-slate-200 px-2 w-72">
-                    @if($topic->lastThread !== null && count($topic->lastThread->messages) > 0)
-                    <x-profile-thumbnail :user="$topic->lastThread->messages[0]->author" />
+                    @if($topic->lastThread !== null && $topic->lastThread->firstMessage !== null)
+                    <x-profile-thumbnail :user="$topic->lastThread->firstMessage->author" />
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $topic->lastThread->id)}}">
                             <span class="flex font-serif text-sm text-slate-600">{{Str::limit($topic->lastThread->title, 30)}}</span>
                         </a>
-                        <span class="flex font-serif text-xs text-slate-500">{{$topic->lastThread->messages[0]->published_at}}</span>
+                        <span class="flex font-serif text-xs text-slate-500">{{$topic->lastThread->firstMessage->published_at}}</span>
                     </div>
                     @endif
                 </div>
                 <div class="flex flex-col justify-center border-l border-slate-200 px-2 w-24">
-                    <span class="flex font-serif text-xs text-slate-600">Threads: {{count($topic->threads)}}</span>
-                    <span class="flex font-serif text-xs text-slate-600">Messages: {{count($topic->messages)}}</span>
+                    <span class="flex font-serif text-xs text-slate-600">Threads: {{$topic->n_threads}}</span>
+                    <span class="flex font-serif text-xs text-slate-600">Messages: {{$topic->n_messages}}</span>
                 </div>
 
                 @if(Auth::user() !== null && Auth::user()->isAdmin())

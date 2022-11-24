@@ -18,6 +18,8 @@ class CreateTopicsTable extends Migration
 
             $table->string('name');
             $table->string('description');
+            $table->unsignedInteger('n_threads')->default(0);
+            $table->unsignedInteger('n_messages')->default(0);
 
             $table->timestamps();
         });

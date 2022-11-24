@@ -18,6 +18,7 @@ class CreateThreadsTable extends Migration
 
             $table->string('title');
             $table->foreignId('topic_id');
+            $table->unsignedInteger('n_replies')->default(0);
 
             $table->timestamps();
         });

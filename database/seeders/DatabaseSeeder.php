@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         $this->call([
-            ThreadSeeder::class,
             TopicSeeder::class,
+            ThreadSeeder::class,
             MessageSeeder::class,
         ]);
     }

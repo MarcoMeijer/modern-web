@@ -13,6 +13,10 @@ class Thread extends Model
 
     protected static function booted()
     {
+        static::created(function ($thread) {
+            $thread->topic->n_threads += 1;
+            $thread->topic->save();
+        });
         static::deleting(function ($thread) {
             foreach ($thread->messages as $message) {
                 $message->delete();
@@ -23,6 +27,13 @@ class Thread extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function firstMessage()
+    {
+        return $this
+            ->hasOne(Message::class)
+            ->oldestOfMany();
     }
 
     public function topic()

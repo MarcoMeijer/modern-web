@@ -5,23 +5,21 @@
         <div class="flex-col flex">
             <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
                 <div class="flex flex-row items-center">
-                    @if (count($thread->messages) !== 0)
-                    @if ($thread->messages[0]->author !== null)
-                    <x-profile-thumbnail :user="$thread->messages[0]->author" />
+                    @if ($thread->firstMessage !== null)
+                    @if ($thread->firstMessage->author !== null)
+                    <x-profile-thumbnail :user="$thread->firstMessage->author" />
                     @endif
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $thread->id)}}">
                             <span class="flex font-semibold text-sm text-slate-700">{{Str::limit($thread->title, 70)}}</span>
                         </a>
-                        @if(count($thread->messages) > 0)
-                        <span class="flex font-serif text-xs text-slate-600">{{$thread->messages[0]->published_at}}</span>
-                        @endif
+                        <span class="flex font-serif text-xs text-slate-600">{{$thread->firstMessage->published_at}}</span>
                     </div>
                     @endif
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex flex-col justify-center border-l border-slate-200 px-2 w-24">
-                    <span class="flex font-serif text-xs text-slate-600">Replies: {{count($thread->messages) - 1}}</span>
+                    <span class="flex font-serif text-xs text-slate-600">Replies: {{$thread->n_replies}}</span>
                 </div>
             </div>
         </div>
