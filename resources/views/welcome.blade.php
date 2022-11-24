@@ -9,10 +9,7 @@
                 <p class="mt-1 text-sm text-gray-600">
                     MultiWorlds is a mmo game where you can gather resources and make your own worlds.
                     The main focus of this game is to give players the tools to create their own things, and instantly share it with other players.
-                </p>
-                <p class="mt-1 text-sm text-gray-600">
-                    You want to create a platformer level with your friends? You can!
-                    You want to commit genocide on all the creatures in your world? Evil, but you can!
+                    Or checking out the worlds that other players have created.
                 </p>
             </div>
             <img class="w-[114] h-64 rounded shadow-md shadow-neutral-500" src="https://img.itch.zone/aW1hZ2UvMTU3MjA5Mi85MTgwMTY1LnBuZw==/original/pHaJqy.png" />
