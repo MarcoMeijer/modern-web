@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="User {{ $user->username }}" page="Forum">
     <x-white-box class="flex-row">
         <div class="flex border-r border-slate-200 p-2">
             <x-profile-badge :user="$user" />

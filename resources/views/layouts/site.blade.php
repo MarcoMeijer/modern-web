@@ -23,7 +23,7 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-        <x-navigation />
+        <x-navigation :page="$page" />
 
         <!-- Page Heading -->
         @if (isset($header))

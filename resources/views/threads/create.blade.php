@@ -1,4 +1,4 @@
-<x-site-layout title="New thread for {{$topic->name}}">
+<x-site-layout title="New thread for {{$topic->name}}" page="Forum">
     <div class="flex flex-col bg-white rounded-md shadow-lg p-5 m-2">
         <x-form method="post" route="{{route('topics.threads.store', $topic->id)}}" title="New thread" submit="Create">
             <x-form-input name="title" label="Title" :errors="$errors" value="" />

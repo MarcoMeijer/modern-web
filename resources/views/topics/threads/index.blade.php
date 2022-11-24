@@ -1,4 +1,4 @@
-<x-site-layout title="Topic {{$topic->name}}">
+<x-site-layout title="Topic {{$topic->name}}" page="Forum">
 
     <x-white-box class="flex-col p-6">
         @foreach($topic->threads as $thread)

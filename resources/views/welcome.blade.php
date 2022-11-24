@@ -1,4 +1,4 @@
-<x-site-layout title="Welcome">
+<x-site-layout title="Welcome" page="Welcome">
     <x-white-box class="p-6 flex-col space-y-6">
         <div class="flex flex-row justify-center items-center">
             <div class="flex flex-col space-y-4 w-96 m-8">

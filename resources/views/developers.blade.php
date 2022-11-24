@@ -1,4 +1,4 @@
-<x-site-layout title="Download">
+<x-site-layout title="Download" page="About us">
     <x-white-box class="p-6 flex-col space-y-6">
         <h1 class="flex flex-col items-center text-3xl font-medium text-gray-900">
             Developers

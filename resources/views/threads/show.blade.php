@@ -1,4 +1,4 @@
-<x-site-layout title="Read {{$thread->title}}">
+<x-site-layout title="Read {{$thread->title}}" page="Forum">
     @foreach($messages as $message)
     <x-white-box>
         <class class="flex border-r border-slate-200 p-4">
