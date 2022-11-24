@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
@@ -25,9 +27,17 @@ class ProfileController extends Controller
 
     public function show($id)
     {
-        $user = User::with('profile.media')->find($id);
+        $user = Cache::remember("profile.show.$id.user", 60, function () use ($id) {
+            return User::with('profile.media')->find($id);
+        });
 
-        return view('profile.show', compact('user'));
+        $messages = Cache::remember("profile.show.$id.messages", 60, function () use ($id) {
+            return Message::withRichText()
+                ->where('author_id', $id)
+                ->get();
+        });
+
+        return view('profile.show', compact('user', 'messages'));
     }
 
     /**
