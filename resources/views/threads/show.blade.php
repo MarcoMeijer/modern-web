@@ -1,5 +1,5 @@
 <x-site-layout title="Read {{$thread->title}}">
-    @foreach($thread->messages as $message)
+    @foreach($messages as $message)
     <x-white-box>
         <class class="flex border-r border-slate-200 p-4">
             <x-profile-badge :user="$message->author" />

@@ -18,9 +18,13 @@ class ThreadController extends Controller
 
     public function show($id)
     {
-        $thread = Thread::with('messages.author.profile.media', 'messages.author.messages')->find($id);
+        $thread = Thread::find($id);
+        $messages = Message::withRichText()
+            ->with('author.profile.media', 'author.messages')
+            ->where('thread_id', $id)
+            ->get();
 
-        return view('threads.show', compact('thread'));
+        return view('threads.show', compact('thread', 'messages'));
     }
 
     public function create($id)
