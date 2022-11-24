@@ -9,6 +9,8 @@ class Topic extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function messages()
     {
         return $this->hasManyThrough(Message::class, Thread::class);
