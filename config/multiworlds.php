@@ -12,6 +12,10 @@ return [
             'url' => '/',
         ],
         [
+            'title' => 'Download',
+            'url' => '/download',
+        ],
+        [
             'title' => 'About us',
             'url' => '/developers',
         ],
