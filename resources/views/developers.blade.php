@@ -13,7 +13,7 @@
                     Main developer, designer and pixel artist of multiworlds.
                     I started creating games at the age of 9 years, and I started working on this game in 2016.
                     I released a very early version of this game in 2017.
-                    After that I restarted this game to improve the code, and get better at pixel art because the game looked like sh*t.
+                    After that I restarted this game to improve the code, and to get better at pixel art.
                     I stopped working on this game for a few years to focus on other things, but since december 2021 I started working on it again.
                 </p>
             </div>
