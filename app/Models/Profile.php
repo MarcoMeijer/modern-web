@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
@@ -32,7 +33,7 @@ class Profile extends Model implements HasMedia
     {
         $media = $this->media->first();
         if ($media === null) {
-            return null;
+            return URL::to('/') . "/media/profiel.png";
         }
 
         try {

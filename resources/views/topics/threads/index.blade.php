@@ -7,7 +7,7 @@
                 <div class="flex flex-row items-center">
                     @if (count($thread->messages) !== 0)
                     @if ($thread->messages[0]->author !== null && $thread->messages[0]->author->profile !== null)
-                    <img class="flex h-8 w-8 rounded" src="{{$thread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
+                    <img class="flex h-8 w-8 rounded" src="{{$thread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="" style="image-rendering: pixelated;">
                     @endif
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $thread->id)}}">
