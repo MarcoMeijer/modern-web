@@ -12,15 +12,15 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex flex-row items-center border-l border-slate-200 px-2 w-72">
+                    @if(count($topic->threads) > 0 && count($topic->threads[0]->messages) > 0)
                     <img class="flex h-8 w-8 rounded" src="{{$topic->threads[0]->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $topic->threads[0]->id)}}">
                             <span class="flex font-serif text-sm text-slate-600">{{Str::limit($topic->threads[0]->title, 30)}}</span>
                         </a>
-                        @if(count($topic->threads[0]->messages) > 0)
                         <span class="flex font-serif text-xs text-slate-500">{{$topic->threads[0]->messages[0]->published_at}}</span>
-                        @endif
                     </div>
+                    @endif
                 </div>
                 <div class="flex flex-col justify-center border-l border-slate-200 px-2 w-24">
                     <span class="flex font-serif text-xs text-slate-600">Threads: {{count($topic->threads)}}</span>
@@ -29,6 +29,13 @@
             </div>
         </div>
         @endforeach
+        @if(Auth::user() !== null && Auth::user()->isAdmin())
+        <form method="GET" action="{{ route('topics.create') }}">
+            <x-primary-button class="m-1">
+                Create topic
+            </x-primary-button>
+        </form>
+        @endif
     </x-white-box>
 
 </x-site-layout>
