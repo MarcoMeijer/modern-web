@@ -8,9 +8,9 @@
         @csrf
         @method('put')
 
-        <x-form-input name="current_password" label="Current Password" :errors="$errors" value="" />
-        <x-form-input name="password" label="New Password" :errors="$errors" value="" />
-        <x-form-input name="password_confirmation" label="Confirm Password" :errors="$errors" value="" />
+        <x-form-input name="current_password" label="Current Password" type="password" :errors="$errors" value="" />
+        <x-form-input name="password" label="New Password" type="password" :errors="$errors" value="" />
+        <x-form-input name="password_confirmation" label="Confirm Password" type="password" :errors="$errors" value="" />
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
