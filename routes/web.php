@@ -29,7 +29,6 @@ Route::get('/developers', function () {
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 require __DIR__ . '/auth.php';
 
@@ -39,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 // ADMIN ROUTES ===========================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
