@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,19 +26,23 @@ Route::get('/download', function () {
 Route::get('/developers', function () {
     return view('developers');
 });
-Route::resource('topics', App\Http\Controllers\TopicController::class);
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 require __DIR__ . '/auth.php';
 
 // LOGGED IN ROUTES =======================================================
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 // ADMIN ROUTES ===========================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    // admin routes come here
+    Route::get('/topics/create', [TopicController::class, 'create'])->name('topics.create');
+    Route::put('/topics', [TopicController::class, 'store'])->name('topics.store');
+    Route::delete('/topics', [TopicController::class, 'destroy'])->name('topics.destroy');
 });
