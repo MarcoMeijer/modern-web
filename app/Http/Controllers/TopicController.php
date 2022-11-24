@@ -31,12 +31,21 @@ class TopicController extends Controller
 
         Topic::create($validated);
 
+        Cache::forget('topics.index');
+
         return redirect()->route('topics.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $topic = Topic::find($id);
+
+        $request->validateWithBag("topicDeletion.$topic->id", [
+            'topic' => ['required', "in:$topic->name"],
+        ]);
+
         Topic::find($id)->delete();
+        Cache::forget("topics.index");
 
         return redirect()->route('topics.index');
     }

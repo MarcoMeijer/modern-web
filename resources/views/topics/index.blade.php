@@ -29,13 +29,34 @@
 
                 @if(Auth::user() !== null && Auth::user()->isAdmin())
                 <div class="flex flex-col items-center justify-center border-l border-slate-200 px-2 w-10">
-                    <form method="POST" action="{{ route('topics.destroy', $topic->id) }}">
-                        @csrf
-                        @method('delete')
-                        <button type="submit">
-                            <x-trash-icon class="flex fill-slate-500 w-4 h-4" />
-                        </button>
-                    </form>
+                    <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-topic-{{$topic->id}}-deletion')">
+                        <x-trash-icon class="flex fill-slate-500 w-4 h-4" />
+                    </button>
+
+                    <x-modal name="confirm-topic-{{$topic->id}}-deletion" :show="$errors->{'topicDeletion.'.$topic->id}->isNotEmpty()" focusable>
+                        <form method="post" action="{{ route('topics.destroy', $topic->id) }}" class="p-6">
+                            @csrf
+                            @method('delete')
+
+                            <h2 class="text-lg font-medium text-gray-900">Are you sure your want to delete this topic?</h2>
+                            <p class="mt-1 text-sm text-gray-600">
+                                Once the topic is deleted, all of its threads and messages will be permanently deleted.
+                                Please enter the topic name "{{ $topic->name }}" to confirm you would like to permanently delete this topic.
+                            </p>
+
+                            <x-form-input class="mt-6" name="topic" label="Topic name" :errors="$errors->{'topicDeletion.'.$topic->id}" value="" />
+
+                            <div class="mt-6 flex justify-end">
+                                <x-secondary-button x-on:click="$dispatch('close')">
+                                    {{ __('Cancel') }}
+                                </x-secondary-button>
+
+                                <x-danger-button class="ml-3">
+                                    {{ __('Delete Topic') }}
+                                </x-danger-button>
+                            </div>
+                        </form>
+                    </x-modal>
                 </div>
                 @endif
             </div>
