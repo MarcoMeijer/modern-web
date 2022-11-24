@@ -1,4 +1,9 @@
 <x-site-layout title="Read {{$thread->title}}" page="Forum">
+    <x-white-box class="justify-center">
+        <h1 class="flex flex-col items-center text-3xl font-medium text-gray-900">
+            {{ $thread->title }}
+        </h1>
+    </x-white-box>
     @foreach($messages as $message)
     <x-white-box>
         <class class="flex border-r border-slate-200 p-4">
