@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::with('threads.messages', 'lastThread.messages.author.profile.media', 'messages')->get();
+        $topics = Cache::remember('topics.index', 60, function () {
+            return Topic::with('threads.messages', 'lastThread.messages.author.profile.media', 'messages')->get();
+        });
 
         return view('topics.index', compact('topics'));
     }

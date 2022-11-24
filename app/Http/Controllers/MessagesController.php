@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MessagesController extends Controller
 {
@@ -20,6 +21,8 @@ class MessagesController extends Controller
             'author_id' => $request->user()->id,
             'thread_id' => $request->thread_id,
         ]);
+
+        Cache::forget("threads.show.$request->thread_id.messages");
 
         return redirect()->route('threads.show', $request->thread_id);
     }
