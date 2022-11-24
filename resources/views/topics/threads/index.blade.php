@@ -6,8 +6,8 @@
             <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
                 <div class="flex flex-row items-center">
                     @if (count($thread->messages) !== 0)
-                    @if ($thread->messages[0]->author !== null && $thread->messages[0]->author->profile !== null)
-                    <img class="flex h-8 w-8 rounded" src="{{$thread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="" style="image-rendering: pixelated;">
+                    @if ($thread->messages[0]->author !== null)
+                    <x-profile-thumbnail :user="$thread->messages[0]->author" />
                     @endif
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $thread->id)}}">

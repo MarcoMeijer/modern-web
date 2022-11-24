@@ -13,7 +13,7 @@
                 <div class="flex-1"></div>
                 <div class="flex flex-row items-center border-l border-slate-200 px-2 w-72">
                     @if($topic->lastThread !== null && count($topic->lastThread->messages) > 0)
-                    <img class="flex h-8 w-8 rounded" src="{{$topic->lastThread->messages[0]->author->profile->getImageUrl('thumbnail')}}" alt="">
+                    <x-profile-thumbnail :user="$topic->lastThread->messages[0]->author" />
                     <div class="flex flex-col mx-1">
                         <a href="{{route('threads.show', $topic->lastThread->id)}}">
                             <span class="flex font-serif text-sm text-slate-600">{{Str::limit($topic->lastThread->title, 30)}}</span>
