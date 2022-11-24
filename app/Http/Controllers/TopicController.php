@@ -8,7 +8,7 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::with('threads', 'threads.messages.author.profile.media', 'messages')->get();
+        $topics = Topic::with('threads.messages.author.profile.media', 'messages')->get();
 
         return view('topics.index', compact('topics'));
     }
