@@ -1,7 +1,7 @@
 <x-site-layout title="Topic {{$topic->name}}" page="Forum">
 
     <x-white-box class="flex-col p-6">
-        @foreach($topic->threads as $thread)
+        @foreach($threads as $thread)
         <div class="flex-col flex">
             <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
                 <div class="flex flex-row items-center">
@@ -18,8 +18,9 @@
                     @endif
                 </div>
                 <div class="flex-1"></div>
-                <div class="flex flex-col justify-center border-l border-slate-200 px-2 w-24">
+                <div class="flex flex-col justify-center border-l border-slate-200 px-2 w-48">
                     <span class="flex font-serif text-xs text-slate-600">Replies: {{$thread->n_replies}}</span>
+                    <span class="flex font-serif text-xs text-slate-600">Last Message: {{$thread->lastMessage->published_at}}</span>
                 </div>
             </div>
         </div>

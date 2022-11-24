@@ -36,6 +36,13 @@ class Thread extends Model
             ->oldestOfMany();
     }
 
+    public function lastMessage()
+    {
+        return $this
+            ->hasOne(Message::class)
+            ->latestOfMany();
+    }
+
     public function topic()
     {
         return $this->belongsTo(Topic::class);

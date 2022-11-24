@@ -20,7 +20,7 @@ class Message extends Model
     protected static function booted()
     {
         static::created(function ($message) {
-            if ($message->thread->messages[0] !== $message) {
+            if ($message->thread->firstMessage->id !== $message->id) {
                 $message->thread->n_replies += 1;
                 $message->thread->save();
             }

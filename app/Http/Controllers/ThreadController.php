@@ -12,11 +12,15 @@ class ThreadController extends Controller
 {
     public function index($id)
     {
-        $topic = Cache::remember("topics.threads.index.$id", 60, function () use ($id) {
-            return Topic::with('threads.firstMessage.author.profile.media')->find($id);
+        $topic = Cache::remember("topics.threads.index.$id.topic", 10, function () use ($id) {
+            return Topic::find($id);
         });
 
-        return view('topics.threads.index', compact('topic'));
+        $threads = Cache::remember("topics.threads.index.$id.threads", 10, function () use ($id) {
+            return Thread::with('firstMessage.author.profile.media', 'lastMessage')->where('topic_id', $id)->get()->sortByDesc('lastMessage.published_at');
+        });
+
+        return view('topics.threads.index', compact('topic', 'threads'));
     }
 
     public function show($id)
