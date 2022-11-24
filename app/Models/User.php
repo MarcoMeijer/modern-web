@@ -57,12 +57,12 @@ class User extends Authenticatable
         });
     }
 
-    public function is_admin()
+    public function isAdmin()
     {
         return $this->authorization === 'admin';
     }
 
-    public function is_moderator()
+    public function isModerator()
     {
         return $this->authorization === 'moderator' || $this->authorization === 'admin';
     }
