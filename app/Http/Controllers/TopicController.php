@@ -30,4 +30,11 @@ class TopicController extends Controller
 
         return redirect()->route('topics.index');
     }
+
+    public function destroy($id)
+    {
+        Topic::find($id)->delete();
+
+        return redirect()->route('topics.index');
+    }
 }

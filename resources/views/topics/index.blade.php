@@ -3,8 +3,8 @@
     <x-white-box class="flex-col p-6">
         @foreach($topics as $topic)
         <div class="flex-col flex">
-            <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
-                <div class="flex flex-col justify-center">
+            <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">
+                <div class="flex flex-col justify-center pl-2">
                     <a href="{{route('topics.threads.index', $topic->id)}}">
                         <span class="flex font-semibold text-slate-700">{{$topic->name}}</span>
                     </a>
@@ -26,9 +26,22 @@
                     <span class="flex font-serif text-xs text-slate-600">Threads: {{count($topic->threads)}}</span>
                     <span class="flex font-serif text-xs text-slate-600">Messages: {{count($topic->messages)}}</span>
                 </div>
+
+                @if(Auth::user() !== null && Auth::user()->isAdmin())
+                <div class="flex flex-col items-center justify-center border-l border-slate-200 px-2 w-10">
+                    <form method="POST" action="{{ route('topics.destroy', $topic->id) }}">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">
+                            <x-trash-icon class="flex fill-slate-500 w-4 h-4" />
+                        </button>
+                    </form>
+                </div>
+                @endif
             </div>
         </div>
         @endforeach
+
         @if(Auth::user() !== null && Auth::user()->isAdmin())
         <form method="GET" action="{{ route('topics.create') }}">
             <x-primary-button class="m-1">
