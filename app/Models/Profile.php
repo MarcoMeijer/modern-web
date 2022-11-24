@@ -45,14 +45,15 @@ class Profile extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        if ($media && $media->extension === Manipulations::FORMAT_GIF) {
-            return;
-        }
-
         $this
             ->addMediaConversion('thumbnail')
             ->fit(Manipulations::FIT_CROP, 64, 64)
             ->nonQueued();
+
+        if ($media && $media->extension === Manipulations::FORMAT_GIF) {
+            return;
+        }
+
         $this
             ->addMediaConversion('big')
             ->fit(Manipulations::FIT_CROP, 256, 256)
