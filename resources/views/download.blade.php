@@ -7,8 +7,8 @@
         <p class="mt-1 text-sm text-gray-600">
             When running the game make sure to have Java installed on your device: <a href="https://www.java.com/download/">https://www.java.com/download/</a>
         </p>
-        <form action="">
-            <x-primary-button href="multiworlds-pre-alpha-0.2.0.jar">
+        <form action="https://marcomeijer.itch.io/multiworlds">
+            <x-primary-button href="">
                 Download
             </x-primary-button>
             multiworlds-pre-alpha-0.2.0.jar
