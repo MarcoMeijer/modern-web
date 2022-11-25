@@ -43,6 +43,6 @@ Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.s
 // ADMIN ROUTES ===========================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/topics/create', [TopicController::class, 'create'])->name('topics.create');
-    Route::put('/topics', [TopicController::class, 'store'])->name('topics.store');
-    Route::delete('/topics', [TopicController::class, 'destroy'])->name('topics.destroy');
+    Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
+    Route::delete('/topics/{id}', [TopicController::class, 'destroy'])->name('topics.destroy');
 });
