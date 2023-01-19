@@ -1,6 +1,7 @@
 <x-site-layout title="Topic {{$topic->name}}" page="Forum">
 
     <x-white-box class="flex-col p-6">
+        {{ $threads->links() }}
         @foreach($threads as $thread)
         <div class="flex-col flex">
             <div class="flex items-stretch flex-row bg-white border-l border-r border-b border-solid border-slate-200 px-2 py-1 {{ $loop->index == 0 ? 'border-t' : ''}}">

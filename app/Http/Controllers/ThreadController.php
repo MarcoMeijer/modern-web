@@ -7,17 +7,30 @@ use App\Models\Thread;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $topic = Cache::remember("topics.threads.index.$id.topic", 10, function () use ($id) {
             return Topic::find($id);
         });
 
-        $threads = Cache::remember("topics.threads.index.$id.threads", 10, function () use ($id) {
-            return Thread::with('firstMessage.author.profile.media', 'lastMessage')->where('topic_id', $id)->get()->sortByDesc('lastMessage.published_at');
+        $page = $request->has('page') ? $request->query('page') : 1;
+
+        $threads = Cache::remember("topics.threads.index.$id.threads.$page", 10, function () use ($id) {
+            $latestMessage = DB::table('messages')
+                ->select('thread_id', DB::raw('MAX(published_at) as last_published_at'))
+                ->groupBy('thread_id');
+
+            return Thread::with('firstMessage.author.profile.media', 'lastMessage')
+                ->joinSub($latestMessage, 'latest_message', function ($join) {
+                    $join->on('threads.id', '=', 'latest_message.thread_id');
+                })
+                ->orderByDesc('latest_message.last_published_at')
+                ->where('topic_id', $id)
+                ->paginate(5);
         });
 
         return view('topics.threads.index', compact('topic', 'threads'));
