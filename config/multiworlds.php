@@ -20,6 +20,10 @@ return [
             'url' => '/developers',
         ],
         [
+            'title' => 'Shop',
+            'url' => '/shop',
+        ],
+        [
             'title' => 'Forum',
             'url' => '/topics',
         ]

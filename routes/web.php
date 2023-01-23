@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyCrystalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\TopicController;
@@ -26,6 +27,10 @@ Route::get('/download', function () {
 Route::get('/developers', function () {
     return view('developers');
 });
+Route::get('/shop', function () {
+    return view('shop');
+})->name('shop');
+Route::get('/shop/buy/{amount}', [BuyCrystalController::class, 'preparePayment'])->name('prepare-payment');
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);
