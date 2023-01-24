@@ -30,7 +30,7 @@ Route::get('/developers', function () {
 Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
-Route::get('/shop/buy/{amount}', [BuyCrystalController::class, 'preparePayment'])->name('prepare-payment');
+Route::post('/shop/buy/{amount}', [BuyCrystalController::class, 'preparePayment'])->name('prepare-payment');
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);

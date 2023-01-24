@@ -12,6 +12,12 @@ class BuyCrystalController extends Controller
         $devWebhookUrl = 'https://marco-meijer.eu-1.sharedwithexpose.com';
         $item = $this->find($amount);
 
+        $request->validate([
+            'username' => 'required|min:3|max:24'
+        ]);
+
+        $username = $request->username;
+
         if ($item === null) {
             return redirect("/", 404);
         }
@@ -24,7 +30,7 @@ class BuyCrystalController extends Controller
                 'currency' => 'EUR',
                 'value' => $price,
             ],
-            'description' => "Order of $name",
+            'description' => "Order of $name for $username",
             'redirectUrl' => route('shop'),
             'webhookUrl' => config('app.env') === 'production' ? route('webhooks.mollie') : $devWebhookUrl,
             'metadata' => [
