@@ -26,6 +26,6 @@ class ApiTokens extends Component
         ]);
 
         $user = auth()->user();
-        $user->createToken($this->name, ['all']);
+        $user->createToken($this->name, ['server:update']);
     }
 }
