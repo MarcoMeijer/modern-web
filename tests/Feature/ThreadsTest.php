@@ -55,4 +55,18 @@ class ThreadsTest extends TestCase
 
         $response->assertViewHas('messages', fn () => $threads->last()->messages()->count() == 6);
     }
+
+    public function test_create_thread_form()
+    {
+        User::factory(10)->create();
+        Topic::factory()->create();
+
+        $response = $this->get('/topics/1/threads/create');
+
+        $response->assertStatus(200);
+        $response->assertSee("New thread");
+        $response->assertSee("Title");
+        $response->assertSee("Body");
+        $response->assertSee("Create");
+    }
 }
