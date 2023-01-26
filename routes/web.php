@@ -31,6 +31,7 @@ Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
 Route::post('/shop/buy/{amount}', [BuyCrystalController::class, 'preparePayment'])->name('prepare-payment');
+Route::get('/shop/buy/success', [BuyCrystalController::class, 'successfulPayment'])->name('order.success');
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::resource('topics.threads', App\Http\Controllers\ThreadController::class)->shallow();
 Route::resource('messages', App\Http\Controllers\MessagesController::class);

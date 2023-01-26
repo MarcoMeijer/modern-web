@@ -31,15 +31,33 @@ class BuyCrystalController extends Controller
                 'value' => $price,
             ],
             'description' => "Order of $name for $username",
-            'redirectUrl' => route('shop'),
+            'redirectUrl' => route('order.success'),
             'webhookUrl' => config('app.env') === 'production' ? route('webhooks.mollie') : $devWebhookUrl,
             'metadata' => [
-                'order_id' => '12345',
+                'name' => $name,
+                'username' => $username,
             ],
         ]);
 
         return redirect($payment->getCheckoutUrl(), 303);
     }
+
+    public function successfulPayment()
+    {
+        return view('order-success');
+    }
+
+    public function webhook(Request $request)
+    {
+        $paymentId = $request->input('id');
+        $payment = Mollie::api()->payments->get($paymentId);
+
+        if ($payment->isPaid()) {
+            // give the gems to the user
+
+        }
+    }
+
 
     private function find(int $amount)
     {
