@@ -13,7 +13,7 @@ class ThreadsTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
+    public function test_that_topic_has_list_of_threads()
     {
         User::factory(10)->create();
         Topic::factory()->create();
@@ -21,10 +21,7 @@ class ThreadsTest extends TestCase
         for ($i = 1; $i <= 5; $i++) {
             Message::factory(1 + $i)->create(['thread_id' => $i]);
         }
-    }
 
-    public function test_that_topic_has_list_of_threads()
-    {
         $threads = Thread::all();
         $response = $this->get('/topics/1/threads');
 
@@ -40,6 +37,13 @@ class ThreadsTest extends TestCase
 
     public function test_that_thread_has_messages()
     {
+        User::factory(10)->create();
+        Topic::factory()->create();
+        Thread::factory(5)->create(['topic_id' => 1]);
+        for ($i = 1; $i <= 5; $i++) {
+            Message::factory(1 + $i)->create(['thread_id' => $i]);
+        }
+
         $threads = Thread::all();
         $response = $this->get('/threads/5');
 
