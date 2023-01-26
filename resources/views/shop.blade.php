@@ -1,19 +1,9 @@
 <x-site-layout title="Shop" page="Shop">
     <x-white-box class="p-6 flex-col space-y-6 items-center">
         <div class="flex flex-row justify-center items-center">
-            <h2 class="flex items-center text-lg font-medium text-gray-900">
-                <img src="{{ URL::to('/') }}/media/mana_crystal_blue.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_green.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_red.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_yellow.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_purple.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
+            <h1 class="flex flex-col items-center text-3xl font-medium text-gray-900">
                 Buy mana crystals
-                <img src="{{ URL::to('/') }}/media/mana_crystal_purple.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_yellow.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_red.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_green.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-                <img src="{{ URL::to('/') }}/media/mana_crystal_blue.png" class="ml-1 mr-1" style="image-rendering: pixelated;" />
-            </h2>
+            </h1>
         </div>
         <div class="flex flex-row">
             <x-crystals />

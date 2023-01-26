@@ -21,23 +21,25 @@ use Laravel\Sanctum\PersonalAccessToken;
 |
 */
 
-Route::get('/message/{id}', function ($id) {
-    return new MessageResource(Message::find($id));
-});
-Route::get('/thread/{id}/messages', function ($id) {
-    return MessageResource::collection(Message::all()->where('thread_id', $id));
-});
-Route::get('/thread/{id}', function ($id) {
-    return new ThreadResource(Thread::find($id));
-});
-Route::get('/threads', function () {
-    return ThreadResource::collection(Thread::all());
-});
-Route::get('/topic/{id}/threads', function ($id) {
-    return ThreadResource::collection(Thread::all()->where('topic_id', $id));
-});
-Route::get('/topics', function () {
-    return TopicResource::collection(Topic::all());
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/message/{id}', function ($id) {
+        return new MessageResource(Message::find($id));
+    });
+    Route::get('/thread/{id}/messages', function ($id) {
+        return MessageResource::collection(Message::all()->where('thread_id', $id));
+    });
+    Route::get('/thread/{id}', function ($id) {
+        return new ThreadResource(Thread::find($id));
+    });
+    Route::get('/threads', function () {
+        return ThreadResource::collection(Thread::all());
+    });
+    Route::get('/topic/{id}/threads', function ($id) {
+        return ThreadResource::collection(Thread::all()->where('topic_id', $id));
+    });
+    Route::get('/topics', function () {
+        return TopicResource::collection(Topic::all());
+    });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

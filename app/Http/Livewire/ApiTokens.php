@@ -7,6 +7,7 @@ use Livewire\Component;
 class ApiTokens extends Component
 {
     public $name;
+    public $token;
 
     public function render()
     {
@@ -26,6 +27,6 @@ class ApiTokens extends Component
         ]);
 
         $user = auth()->user();
-        $user->createToken($this->name, ['server:update']);
+        $this->token = $user->createToken($this->name, ['server:update'])->plainTextToken;
     }
 }

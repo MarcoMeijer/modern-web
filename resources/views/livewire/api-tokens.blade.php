@@ -5,15 +5,13 @@
     </header>
 
     <div class="flex flex-col">
-        @foreach(Auth::user()->tokens()->get() as $token)
+        @foreach(Auth::user()->tokens()->get() as $tokena)
         <div class="flex flex-row border m-1 items-center">
             <p class="w-48 m-2">
-                {{ $token->name }}
+                {{ $tokena->name }}
             </p>
-            <p class="ml-4 flex-1 font-mono text-sm bg-gray-100 p-2 m-1 rounded-md">
-                {{ $token->token }}
-            </p>
-            <form wire:submit.prevent="deleteApiToken({{ $token->id }})">
+            <p class="flex-1"></p>
+            <form wire:submit.prevent="deleteApiToken({{ $tokena->id }})">
                 <x-danger-button class="m-2">Delete</x-danger-button>
             </form>
         </div>
@@ -27,5 +25,8 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <x-primary-button class="flex self-start">New token</x-primary-button>
+        @if($token)
+        <p>Your new token is <span class="font-mono bg-gray-200 p-1 rounded">{{ $token }}</span>, please save it <span class="underline">because you won't be able to see it again!</span></p>
+        @endif
     </form>
 </section>
